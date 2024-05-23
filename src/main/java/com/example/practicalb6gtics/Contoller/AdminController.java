@@ -24,7 +24,7 @@ public class AdminController {
 
         model.addAttribute("listaDispositivos",dispositivoRepository.listarDispositivosValidos());
 
-        return "Admin/ListaDispositivos";
+        return "ListaDispositivos";
     }
 
     @GetMapping(value = { "/edit"})

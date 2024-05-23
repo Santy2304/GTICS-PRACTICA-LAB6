@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head th:replace="~{fragments/menu.html :: header( title = 'Dispositivos')}"></head>
     <body>
         <div class="container">
@@ -23,9 +23,9 @@
                         <td th:text="${dispositivo.nombre}"></td>
                         <td th:text="${dispositivo.cantidad}"></td>
                         <td th:text="${dispositivo.disponible}"></td>
-                        <td><a class="btn btn-primary" th:href="@{'/admin/edit' + '?id=' + ${dispositivo.idDispositivos}}">Editar</a>
+                        <td><a sec:authorize="hasAnyAuthority('admin')"  class="btn btn-primary" th:href="@{'/admin/edit' + '?id=' + ${dispositivo.idDispositivos}}">Editar</a>
 
-                        <a class="btn btn-danger" th:href="@{'/admin/delete' + '?id=' + ${dispositivo.idDispositivos}}">Borrar</a>
+                        <a sec:authorize="hasAnyAuthority('admin')" class="btn btn-danger" th:href="@{'/admin/delete' + '?id=' + ${dispositivo.idDispositivos}}">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

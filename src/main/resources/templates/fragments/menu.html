@@ -16,15 +16,15 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a th:href="@{/admin/listaDispositivos}" class="nav-link active" aria-current="page">Dispositivos</a>
+                            <a th:href="@{../listaDispositivos}" class="nav-link active" aria-current="page">Dispositivos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:classappend="${active == 'Reservas'?'active':''}">Reservas</a>
+                            <a class="nav-link" sec:authorize="hasAnyAuthority('profesor','alumno')" th:classappend="${active == 'Reservas'?'active':''}">Reservas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:classappend="${active == 'Préstamos'?'active':''}">Préstamos</a>
+                            <a class="nav-link" sec:authorize="hasAnyAuthority('profesor','alumno')" th:classappend="${active == 'Préstamos'?'active':''}">Préstamos</a>
                         </li>
-<!--
+
                         <div sec:authorize="isAnonymous()">
                             <a th:href="@{/login}">(Iniciar Sesión)</a>
                         </div>
@@ -34,7 +34,7 @@
                                 <input class="btn btn-link" type="submit" value="(Cerrar Sesión)">
                             </form>
                         </div>
-                        -->
+
                     </ul>
                 </div>
             </div>
