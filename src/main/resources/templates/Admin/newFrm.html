@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/menu.html :: header( title = 'NewDispo')}"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="~{fragments/menu.html :: menu (active='Dispositivos')}"></nav>
+            <div class="row mb-4">
+                <div class="col-md-6 offset-md-3">
+                    <h2>Dispositivo</h2>
+
+                    <hr/>
+                    <form method="post" th:action="@{'/admin/guardar'}" th:object="${dispositivo}">
+
+                        <input type="hidden" th:field="*{idDispositivos}">
+                        <input type="hidden" th:field="*{habilitado}">
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" th:field="*{nombre}" th:classappend="${#fields.hasErrors('nombre')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Cantidad</label>
+                            <input type="text" class="form-control" th:field="*{cantidad}" th:classappend="${#fields.hasErrors('cantidad')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Disponible</label>
+                            <input type="text" class="form-control" th:field="*{disponible}" th:classappend="${#fields.hasErrors('disponible')?'is-invalid':''}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('disponible')}" th:errors="*{disponible}"></div>
+                        </div>
+
+                        <a th:href="@{'/admin/listaDispositivos'}" class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

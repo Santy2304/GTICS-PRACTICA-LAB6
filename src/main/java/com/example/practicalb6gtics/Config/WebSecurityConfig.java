@@ -29,20 +29,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         http.formLogin();
-
         http.authorizeHttpRequests()
                 .requestMatchers("/admin", "/admin/**").hasAnyAuthority("admin")
                 .anyRequest().permitAll();
 
         return http.build();
     }
-
     @Bean
     public UserDetailsManager users(DataSource dataSource) {
         JdbcUserDetailsManager jdbc = new JdbcUserDetailsManager(dataSource);
 
-        String sql1 = "SELECT correo,password FROM usuarios where email = ?";
-        String sql2 = "SELECT u.correo, r.nombre FROM usuarios u INNER JOIN rol r ON (u.idrol = r.idrol) " +
+        String sql1 = "SELECT correo, password, activo FROM usuarios where correo = ?";
+        String sql2 = "SELECT u.correo, r.autoridad FROM usuarios u INNER JOIN rol r ON (u.idrol = r.idrol) " +
                 "WHERE u.correo = ?";
 
         jdbc.setUsersByUsernameQuery(sql1);

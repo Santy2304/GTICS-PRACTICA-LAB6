@@ -43,4 +43,8 @@ public class Usuario {
     private String apellido;
 
 
+    @NotNull
+    @Column(name = "activo", nullable = false)
+    private Byte activo;
+
 }

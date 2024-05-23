@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/navbar.html :: header( title = 'Productos')}"></head>
+    <head th:replace="~{fragments/menu.html :: header( title = 'Dispositivos')}"></head>
     <body>
         <div class="container">
-            <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Product')}"></nav>
-            <h2>Lista de Productos</h2>
-            <a class="btn btn-primary mt-4 mb-4" th:href="@{'/product/new'}">Nuevo Producto</a>
+            <nav th:replace="~{fragments/menu.html :: menu( active = 'Dispositivos')}"></nav>
+            <h2>Inventario de Dispositivos</h2>
+            <a class="btn btn-primary mt-4 mb-4" th:href="@{'/admin/new'}">Agregar Dispositivos</a>
             <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Product Name</th>
-                        <th>Categoría</th>
-                        <th>Proveedor</th>
-                        <th>Precio Unitario</th>
-                        <th>Stock</th>
-                        <th>¿Descontinuado?</th>
-                        <th></th>
-                        <th></th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Disponibles</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="product, info : ${listaProductos}">
-                        <td th:text="${info.index + 1}"></td>
-                        <td th:text="${product.productname}"></td>
-                        <td th:text="${product.category.categoryname}"></td>
-                        <td th:text="${product.supplier.companyname}"></td>
-                        <td th:text="${product.unitprice}"></td>
-                        <td th:text="${product.unitsinstock}"></td>
-                        <td th:text="${product.discontinued?'si':'no'}"></td>
-                        <td><a class="btn btn-primary" th:href="@{'/product/edit' + '?id=' + ${product.id}}">Editar</a>
-                        </td>
-                        <td><a class="btn btn-danger" th:href="@{'/product/delete' + '?id=' + ${product.id}}">Borrar</a>
+                    <tr th:each="dispositivo: ${listaDispositivos}">
+                        <td th:text="${dispositivo.idDispositivos}"></td>
+                        <td th:text="${dispositivo.nombre}"></td>
+                        <td th:text="${dispositivo.cantidad}"></td>
+                        <td th:text="${dispositivo.disponible}"></td>
+                        <td><a class="btn btn-primary" th:href="@{'/admin/edit' + '?id=' + ${dispositivo.idDispositivos}}">Editar</a>
+
+                        <a class="btn btn-danger" th:href="@{'/admin/delete' + '?id=' + ${dispositivo.idDispositivos}}">Borrar</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <script th:replace="~{fragments/navbar.html :: footer-bootstrap}"></script>
     </body>
 </html>
