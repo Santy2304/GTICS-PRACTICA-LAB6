@@ -48,7 +48,7 @@ public class WebSecurityConfig {
                     if(rol.equals("admin")){
                         response.sendRedirect("/admin/listaDispositivos");
                     }else{
-                        if (rol.equals("profesor")){
+                        if (rol.equals("alumno")){
                             response.sendRedirect("/alumno/listaDispositivos");
 
                         }else{
